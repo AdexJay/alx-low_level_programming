@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <time.h>
-/* more headers goes in here */
 #include <stdio.h>
 
 /**
