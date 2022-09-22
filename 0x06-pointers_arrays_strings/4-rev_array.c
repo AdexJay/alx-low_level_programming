@@ -8,11 +8,22 @@
 
 void reverse_array(int *a, int n)
 {
-	int tmp, index;
-	for (index = n - 1; indedx > n / 2; index++)
+	int temp, s, e;
+
+	s = 0;
+	e = n - 1;
+	/**
+	 * set value in array a in temp
+	 * then place the last array in
+	 * the first array then place
+	 * value in temp to last array
+	*/
+	while (s < e)
 	{
-		tmp = a[n - 1 - index];
-		a[n - 1 - index] = a[index];
-		a[index] = tmp;
+		temp = a[s];
+		a[s] = a[e];
+		a[e] = temp;
+		s++;
+		e--;
 	}
 }
