@@ -1,45 +1,36 @@
 #include "main.h"
 /**
- * helperFunction - returns 0 or 1
- * @num: number being checked
- * @i: possible factor of the number
- *
- * Return: 0 if not prime, 1 if prime
+ * is_prime - detects if an input number is a prime number
+ * @n: input number
+ * @a: iterator
+ * Return: 1 if n is prime, 0 if n is !prime
  */
-int helperFunction(int num, int i)
+
+int is_prime(unsigned int n, unsigned int a)
 {
-	if (i < num)
+	if (n % a == 0)
 	{
-		if (num % i == 0)
-		{
-			return (0);
-		}
+		if (n == a)
+			return (1);
 		else
-		{
-			return (helperFunction(num, i + 1));
-		}
+			 return (0);
 	}
-	else
-	{
-		return (1);
-	}
+	return (0 + is_prime(n, a + 1));
 }
 
 /**
- * is_prime_number - checks if the number is prime or not
- * @n: number to be checked
- *
- * Return: 1 if number is prime
- * 0 if number is not prime
+ * is_prime_number - detects if an input number is a prime numb.
+ * @n: input number
+ * Return: 1 if n is prime, 0 if n is !prime
  */
+
 int is_prime_number(int n)
 {
-	if (n <=1)
-	{
+	if (n == 0)
 		return (0);
-	}
-	else
-	{
-		return (helperFunction(n, 2));
-	}
+	if (n < 0)
+		return (0);
+	if (n == 1)
+		return (0);
+	return (is_prime(n, 2));
 }
