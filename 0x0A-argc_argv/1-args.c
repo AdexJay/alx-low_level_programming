@@ -1,16 +1,16 @@
 #include <stdio.h>
 
 /**
- * main - prints all argument it receives
- * @argc: n args
- * @argv: arr args
+ * main - this program prints its name
+ *
+ * @argc: number of arguments
+ * @argv: string of arguments
+ *
  * Return: 0
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]__attribute__((unused)))
 {
-	int i;
+	printf("%d\n", argc - 1);
 
-	for (i = 0; i < argc; i++)
-		printf("%s\n', argv[i]);
 	return (0);
 }
