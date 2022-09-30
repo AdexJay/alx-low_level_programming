@@ -5,7 +5,7 @@
 
 /**
  * main - adds positive number
- * @argcc: n args
+ * @argc: n args
  * @argv: arr args
  * Return: 0
  */
