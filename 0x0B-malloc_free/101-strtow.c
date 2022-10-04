@@ -2,25 +2,65 @@
 #include <stdlib.h>
 
 /**
- * wrdcnt - counts the number of words in a string
- * @s: string to count
+ * _isspace - check if a character is whitespace
+ * @c: the character to check
  *
- * Return: int of number of words
+ * Return: 1 is c us a whitespace character, otherwise 0
  */
-int wrdcnt(char *s)
+int _isspace(int c)
 {
-	int i, n = 0;
+	if (c == 0x020 || (c >= 0x09 && c <= 0x0d))
+		return (1);
+	return (0);
+}
 
-	for (i = 0; s[i]; i++)
-	{
-		if (s[i] == ' ')
+/**
+ * strtow - splits a string into words
+ * @str: pointer to the string split
+ *
+ * Return: NULL if memory allocation fails or if str is NULL or empty ("")
+ * otherwise, return a pointer to the array of words terminated by a NULL
+ */
+char **strtow(char *str)
+{
+	char **words, *pos = str;
+	int w = 0, c;
+
+	if (!(str && *str))
+		return (NULL);
+	do {
+		while (_isspace(*pos))
+			++pos;
+		if (!*pos)
+			break;
+		while (*(++pos) && !_isspace(*pos))
+			;
+	} while (++w, *pos);
+	if (!w)
+		return (NULL);
+	words = (char **) malloc(sizeof(char *) * (w + 1));
+	if (!words)
+		return (NULL);
+	w = 0, pos = str;
+	do {
+		while (_isspace(*pos))
+			++pos;
+		if (!*pos)
+			break;
+		for (str = pos++; *pos && !_isspace(*pos); ++pos)
+			;
+		words[w] = (char *)malloc(sizeof(char) * (pos - str + 1));
+		if (!words[w])
 		{
-			if (s[i + 1] != ' ' && s[i + 1] != '\0')
-				n++;
+			while (w > 0)
+				free(words[--w]);
+			free(words);
+			return (NULL);
 		}
-		else if (i == 0)
-			n++;
-	}
-	n++;
-	return (n);
+		for (c = 0; str < pos; ++c, ++str)
+			words[w][c] = *str;
+		words[w][c] = '\0';
+	} while (++w, *pos);
+	words[w] = NULL;
+	return (words);
 }
