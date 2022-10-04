@@ -9,7 +9,7 @@
  * Return: pointer to newly allocated space in memory, or NULL if error
  */
 
-char *str_concat(char *s1, char s2)
+char *str_concat(char *s1, char *s2)
 {
 	unsigned int i, j, k, l;
 	char *s;
