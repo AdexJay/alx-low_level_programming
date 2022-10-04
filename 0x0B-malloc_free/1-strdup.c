@@ -6,36 +6,26 @@
  * passed.
  * @str: pointer to the string being duplicated
  *
- * Return: NULL if str is NULL
+ * Return: pointer to duplicate string or NULL if error
  */
 char *_strdup(char *str)
 {
-	char *nstr;
-	unsigned int len, i;
+	unsigned int i, j;
+	char *s;
 
-	/* check if str is NULL */
 	if (str == NULL)
+		return (NULL);
+	for (i = 0; str[i]; i++)
+		;
+	i++;
+	s = malloc(i * sizeof(char));
+	if (s == NULL)
 	{
 		return (NULL);
 	}
-
-	len = 0;
-	while (str[len] != '\0')
+	for (j = 0; j < i; j++)
 	{
-		len++;
+		s[j] = str[j];
 	}
-	nstr = malloc(sizeof(char) * (len + i));
-
-	/* check if malloc was successful */
-	if (nstr == NULL)
-	{
-		return (NULL);
-	}
-
-	for (i = 0; i < len; i++)
-	{
-		nstr[i] = str[i];
-	}
-	nstr[len] = '\0';
-	return (nstr);
+	return (s);
 }
