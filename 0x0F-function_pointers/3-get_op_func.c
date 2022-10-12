@@ -2,11 +2,14 @@
 #include <stdlib.h>
 
 /**
- * get_op_function - select the correct operation function asked by user
- * @s: operator argument
- * Return: function pointer corresponding to operator given
+ * get_op_func - Selects the correct function to perform
+ * the operation asked by the user.
+ * @s: the operator passed as argument
+ *
+ * Return: a pointer to the function corresponding
+ * to the operator given as a parameter
  */
-int (*get_op_fuc(char *s))(int, int)
+int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
 		{"+", op_add},
@@ -20,5 +23,6 @@ int (*get_op_fuc(char *s))(int, int)
 
 	while (ops[i].op != NULL && *(ops[i].op) != *s)
 		i++;
+
 	return (ops[i].f);
 }
